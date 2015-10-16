@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:400);
+@import "normalize";
+
+@mixin e($names...) {
+  @each $name in $names {
+    &__#{$name} {
+      @content;
+    }
+  }
+}
+
+@mixin m($names...) {
+  @each $name in $names {
+    &--#{$name} {
+      @content;
+    }
+  }
+}
+
+
+html,
+body {
+  width:100%;
+  height:100%;
+}
+
+html {
+  font-family:"Dosis",sans-serif;
+}
+
+h1 {
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:10;
+  margin:0;
+  color:#fff;
+  font-size:16px;
+  letter-spacing:.05em;
+}
+
+.clock {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
+  width:100%;
+  height:100%;
+  transition:background-color .5s ease-out;
+  @include e(time) {
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+    margin-top:-.7em;
+    text-align:center;
+    font-size:80px;
+    font-weight:normal;
+    letter-spacing:.1em;
+    color:#fff;
+  }
+}
