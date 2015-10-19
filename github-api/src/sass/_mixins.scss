@@ -1,0 +1,15 @@
+@mixin e($names...) {
+  @each $name in $names {
+    &__#{$name} {
+      @content;
+    }
+  }
+}
+
+@mixin m($names...) {
+  @each $name in $names {
+    &--#{$name} {
+      @content;
+    }
+  }
+}
