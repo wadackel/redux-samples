@@ -1,15 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 @import "normalize";
-@import "bootstrap";
 @import "font-awesome/font-awesome";
+@import "easings";
 @import "mixins";
 
 
 //== Variables
+$color-primary:#158bec;
+$color-bg:#282c34;
 $color-divider:#eee;
-$color-text-primary:#2c3e50;
+$color-text-primary:#abb2bf;
+$color-text-link:lighten($color-primary, 10%);
 
-$header-height:50px;
-$footer-height:30px;
+$navigation-width:100px;
 
 
 //== Basic styles
@@ -23,47 +26,84 @@ body {
   height:100%;
   color:$color-text-primary;
   font-size:16px;
-  font-family:"游ゴシック", YuGothic, 'ヒラギノ角ゴ Pro W3', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN', Arial, Helvetica, メイリオ, Meiryo, sans-serif;
+  font-family:"Roboto", "游ゴシック", YuGothic, 'ヒラギノ角ゴ Pro W3', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN', Arial, Helvetica, メイリオ, Meiryo, sans-serif;
+}
+
+body {
+  background:$color-bg;
+}
+
+a {
+  color:$color-text-link;
+  text-decoration:none;
+  transition:all .2s $ease-out-quart;
+  &:hover {
+    color:darken($color-text-link, 20%);
+    text-decoration:none;
+  }
+}
+
+::selection {
+  background:lighten($color-primary, 20%);
 }
 
 
-//== Header
-.header {
+//== Navigation
+.navigation {
   position:fixed;
   top:0;
   left:0;
   z-index:8000;
-  width:100%;
-  height:$header-height;
-  background:#fff;
-  box-shadow:0 0 5px rgba(0, 0, 0, .16);
+  width:$navigation-width;
+  height:100%;
+  background:darken($color-bg, 5%);
+  color:#fff;
+  text-align:center;
+
   @include e(logo) {
-    float:left;
+    $height:$navigation-width;
     margin:0;
+    height:$height;
+    background:darken($color-bg, 7%);
     font-size:2rem;
     > a {
       display:block;
-      height:$header-height;
-      padding:0 20px;
-      line-height:$header-height;
+      line-height:$height;
+      color:$color-primary;
+      &:hover {
+        color:#fff;
+        background:$color-primary;
+      }
     }
   }
-}
 
+  @include e(menu) {
+    margin:0;
+    padding:0;
+  }
 
-//== Global navigation
-.gnav {
-  float:right;
   @include e(item) {
-    float:left;
-    height:$header-height;
+    border-bottom:1px solid darken($color-bg, 7%);
     list-style:none;
-    line-height:$header-height;
-    text-decoration:none;
-    font-size:.8rem;
+    text-align:center;
+    font-size:.7rem;
     > a {
       display:block;
-      padding:0 1em;
+      padding:1rem 0;
+      color:#fff;
+      &:hover {
+        color:#fff;
+        background:$color-primary;
+      }
+      .fa {
+        display:block;
+        margin-bottom:.5rem;
+        font-size:1.5rem;
+      }
+      > span {
+        display:block;
+        letter-spacing:.05em;
+      }
     }
   }
 }
@@ -72,8 +112,7 @@ body {
 //== Layouts
 .contents {
   clear:both;
-  padding-top:$header-height;
-  padding-bottom:$footer-height;
+  padding:60px 60px 60px $navigation-width + 60px;
 }
 
 
@@ -81,19 +120,39 @@ body {
 .footer {
   position:fixed;
   bottom:0;
-  left:0;
+  right:0;
   z-index:8000;
-  width:100%;
-  height:$footer-height;
-  border-top:1px solid $color-divider;
-  background:#fff;
+  padding:15px;
 }
 
 
 //== Copyright
 .copyright {
+  margin:0;
   text-align:center;
   font-size:.7rem;
   letter-spacing:.05em;
-  line-height:$footer-height;
+  line-height:1.4;
+}
+
+
+//== Page Header
+.page-header {
+  position:relative;
+  margin:0 0 2rem 0;
+
+  @include e(icon) {
+    @extend .fa;
+    margin-right:.5rem;
+    vertical-align:baseline;
+    font-size:2rem;
+    @include m(search) { @extend .page-header__icon, .fa-search; }
+  }
+
+  @include e(title) {
+    display:inline-block;
+    margin:0;
+    font-size:2rem;
+    letter-spacing:.05em;
+  }
 }

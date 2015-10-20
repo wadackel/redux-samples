@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react"
-import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 import Footer from "../components/Footer"
 
 
@@ -7,7 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Navigation />
         <div className="contents">
           {this.props.children}
         </div>

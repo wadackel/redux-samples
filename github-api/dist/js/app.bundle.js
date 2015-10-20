@@ -25267,9 +25267,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _componentsHeader = __webpack_require__(254);
+	var _componentsNavigation = __webpack_require__(254);
 	
-	var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
+	var _componentsNavigation2 = _interopRequireDefault(_componentsNavigation);
 	
 	var _componentsFooter = __webpack_require__(255);
 	
@@ -25324,7 +25324,7 @@
 	      return _react2["default"].createElement(
 	        "div",
 	        null,
-	        _react2["default"].createElement(_componentsHeader2["default"], null),
+	        _react2["default"].createElement(_componentsNavigation2["default"], null),
 	        _react2["default"].createElement(
 	          "div",
 	          { className: "contents" },
@@ -25805,24 +25805,24 @@
 	
 	var GITHUB_REPOSITORY = "https://github.com/tsuyoshiwada/redux-samples";
 	
-	var Header = (function (_Component) {
-	  _inherits(Header, _Component);
+	var Navigation = (function (_Component) {
+	  _inherits(Navigation, _Component);
 	
-	  function Header() {
-	    _classCallCheck(this, Header);
+	  function Navigation() {
+	    _classCallCheck(this, Navigation);
 	
-	    _get(Object.getPrototypeOf(Header.prototype), "constructor", this).apply(this, arguments);
+	    _get(Object.getPrototypeOf(Navigation.prototype), "constructor", this).apply(this, arguments);
 	  }
 	
-	  _createClass(Header, [{
+	  _createClass(Navigation, [{
 	    key: "render",
 	    value: function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        { className: "header" },
+	        { className: "navigation" },
 	        _react2["default"].createElement(
 	          "h1",
-	          { className: "header__logo" },
+	          { className: "navigation__logo" },
 	          _react2["default"].createElement(
 	            _reactRouter.Link,
 	            { to: "/" },
@@ -25831,41 +25831,61 @@
 	        ),
 	        _react2["default"].createElement(
 	          "ul",
-	          { className: "gnav" },
+	          { className: "navigation__menu" },
 	          _react2["default"].createElement(
 	            "li",
-	            { className: "gnav__item" },
+	            { className: "navigation__item" },
 	            _react2["default"].createElement(
 	              _reactRouter.Link,
 	              { to: "/about/" },
-	              "ABOUT"
+	              _react2["default"].createElement("i", { className: "fa fa-question" }),
+	              _react2["default"].createElement(
+	                "span",
+	                null,
+	                "ABOUT"
+	              )
 	            )
 	          ),
 	          _react2["default"].createElement(
 	            "li",
-	            { className: "gnav__item" },
+	            { className: "navigation__item" },
 	            _react2["default"].createElement(
 	              _reactRouter.Link,
 	              { to: "/search/" },
-	              "SEARCH"
+	              _react2["default"].createElement("i", { className: "fa fa-search" }),
+	              _react2["default"].createElement(
+	                "span",
+	                null,
+	                "SEARCH"
+	              )
 	            )
 	          ),
 	          _react2["default"].createElement(
 	            "li",
-	            { className: "gnav__item" },
+	            { className: "navigation__item" },
 	            _react2["default"].createElement(
 	              _reactRouter.Link,
 	              { to: "/trending/" },
-	              "TRENDING"
+	              _react2["default"].createElement("i", { className: "fa fa-line-chart" }),
+	              _react2["default"].createElement(
+	                "span",
+	                null,
+	                "TRENDING"
+	              )
 	            )
 	          ),
 	          _react2["default"].createElement(
 	            "li",
-	            { className: "gnav__item" },
+	            { className: "navigation__item" },
 	            _react2["default"].createElement(
 	              "a",
 	              { href: GITHUB_REPOSITORY, target: "_blank" },
-	              "FORK ME"
+	              _react2["default"].createElement("i", { className: "fa fa-github" }),
+	              _react2["default"].createElement(
+	                "span",
+	                null,
+	                "FORK ME"
+	              )
 	            )
 	          )
 	        )
@@ -25873,10 +25893,10 @@
 	    }
 	  }]);
 	
-	  return Header;
+	  return Navigation;
 	})(_react.Component);
 	
-	exports["default"] = Header;
+	exports["default"] = Navigation;
 	module.exports = exports["default"];
 
 /***/ },
@@ -25979,7 +25999,7 @@
 	    value: function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        { className: "container" },
+	        null,
 	        "Index"
 	      );
 	    }
@@ -26079,8 +26099,17 @@
 	    value: function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        { className: "container" },
-	        "Search"
+	        null,
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "page-header" },
+	          _react2["default"].createElement("i", { className: "page-header__icon--search" }),
+	          _react2["default"].createElement(
+	            "h2",
+	            { className: "page-header__title" },
+	            "SEARCH"
+	          )
+	        )
 	      );
 	    }
 	  }]);
