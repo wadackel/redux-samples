@@ -3,6 +3,33 @@ import Navigation from "../components/Navigation"
 import Footer from "../components/Footer"
 
 
+import fetch from "isomorphic-fetch"
+
+function checkStatus(res) {
+  if( res.status >= 200 && res.status < 300 ){
+    return res;
+  }else{
+    let error = new Error(res.statusText);
+    error.response = res;
+    throw error;
+  }
+}
+
+function parseJSON(res) {
+  return res.json();
+}
+
+// fetch("https://api.github.com/search/repositories?q=react+language:javascript&sort=stars&order=desc")
+//   .then(checkStatus)
+//   .then(parseJSON)
+//   .then((res) => {
+//     // console.log(res.items);
+//     console.log(JSON.stringify(res.items.slice(0, 10)));
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
 export default class App extends Component {
   render() {
     return (

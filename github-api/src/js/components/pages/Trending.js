@@ -1,11 +1,14 @@
 import React, {Component, PropTypes} from "react"
+import PageHeader from "../PageHeader"
 
 
 export default class Trending extends Component {
   render() {
     return (
-      <div className="container">
-        Trending
+      <div>
+        <PageHeader
+          icon="line-chart"
+          title="TRENDING" />
       </div>
     );
   }
