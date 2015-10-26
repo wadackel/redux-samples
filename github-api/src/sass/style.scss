@@ -11,9 +11,7 @@ $color-bg:#282c34;
 $color-divider:#eee;
 $color-text-primary:#abb2bf;
 $color-text-link:lighten($color-primary, 10%);
-
 $navigation-width:100px;
-
 $control-height:46px;
 
 
@@ -27,8 +25,8 @@ body {
   width:100%;
   height:100%;
   color:$color-text-primary;
+  font-family:"Roboto", "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "Hiragino Kaku Gothic ProN", Arial, Helvetica, メイリオ, Meiryo, sans-serif;
   font-size:16px;
-  font-family:"Roboto", "游ゴシック", YuGothic, 'ヒラギノ角ゴ Pro W3', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN', Arial, Helvetica, メイリオ, Meiryo, sans-serif;
 }
 
 body {
@@ -52,16 +50,16 @@ img {
 
 input[type="text"],
 textarea {
+  color:$color-bg;
   background:#fff;
   box-shadow:0;
-  color:$color-bg;
-  transition-property:box-shadow, background;
-  transition-duration:.2s;
   transition-timing-function:$ease-out-quart;
+  transition-duration:.2s;
+  transition-property:box-shadow, background;
   &:focus {
+    outline:none;
     background:darken(#fff, 8%);
     box-shadow:0 0 8px rgba(0, 0, 0, .3) inset;
-    outline:none;
   }
 }
 
@@ -70,15 +68,13 @@ textarea {
 }
 
 
-@mixin _btn-theme-factory($color, $background-color){
+@mixin _btn-theme-factory($color, $background-color) {
   color:$color;
   background-color:$background-color;
-
   &:hover {
     color:$color;
     background-color:darken($background-color, 8%);
   }
-
   &:active {
     color:$color;
     background-color:darken($background-color, 12%);
@@ -87,38 +83,34 @@ textarea {
 
 .btn {
   $height:$control-height;
-
-  display:inline-block;
-  height:$height;
-  padding:6px 12px;
-  border:0;
-  text-decoration:none;
-  text-align:center;
-  white-space:nowrap;
-  vertical-align:middle;
-  font-size:1rem;
-  font-weight:normal;
-  cursor:pointer;
-  user-select:none;
-  touch-action:manipulation;
-  transition:all .2s $ease-out-quart;
-
-  &:focus {
-    outline:none;
-  }
-
   @include m(default) {
     @extend .btn;
     @include _btn-theme-factory($color-text-primary, darken($color-bg, 5%));
   }
-
   @include m(primary) {
     @extend .btn;
     @include _btn-theme-factory(#fff, $color-primary);
   }
-
   @include m(danger) {
     // @include _btn-theme-factory(#fff, $color-red);
+  }
+  display:inline-block;
+  height:$height;
+  padding:6px 12px;
+  cursor:pointer;
+  user-select:none;
+  font-size:1rem;
+  font-weight:normal;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+  text-decoration:none;
+  border:0;
+  transition:all .2s $ease-out-quart;
+
+  touch-action:manipulation;
+  &:focus {
+    outline:none;
   }
 }
 
@@ -130,106 +122,89 @@ textarea {
   $font-size:16px;
   $border-width:1px;
   $border-color:$color-text-primary;
-
-  display:table;
-  box-sizing:border-box;
-  width:100%;
-  border-collapse:separate;
-  font-size:$font-size;
-
   @include m(search) {
     max-width:600px;
     margin-right:auto;
     margin-left:auto;
   }
-
   @include e(control) {
-    float:left;
     display:table-cell;
+    float:left;
     box-sizing:border-box;
     width:100%;
     height:$height;
     margin:0;
     padding:$padding;
+    font-family:inherit;
+    font-size:$font-size;
+    line-height:1.5;
     border:$border-width solid $border-color;
     border-radius:0;
-    font-size:$font-size;
-    font-family:inherit;
-    line-height:1.5;
-    appearance:none;
 
+    appearance:none;
     & + .input-group__addon {
       border-width:$border-width $border-width $border-width 0;
     }
   }
-
   @include e(addon, btn) {
     display:table-cell;
     box-sizing:border-box;
     width:1%;
     height:$height;
     padding:$padding;
+    line-height:1;
+    text-align:center;
+    vertical-align:middle;
+    white-space:nowrap;
     border-width:$border-width 0 $border-width $border-width;
     border-style:solid;
     border-color:$border-color;
-    white-space:nowrap;
-    vertical-align:middle;
-    text-align:center;
-    line-height:1;
   }
-
   @include e(btn) {
-    border:0;
-    padding:0;
     @include m(search) {
       width:70px;
       .btn {
         width:100%;
       }
     }
+    padding:0;
+    border:0;
   }
+  display:table;
+  box-sizing:border-box;
+  width:100%;
+  border-collapse:separate;
+  font-size:$font-size;
 }
 
 
 //== Navigation
 .navigation {
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:8000;
-  width:$navigation-width;
-  height:100%;
-  background:darken($color-bg, 5%);
-  color:#fff;
-  text-align:center;
-
   @include e(logo) {
     $height:$navigation-width;
-    margin:0;
     height:$height;
-    background:darken($color-bg, 7%);
+    margin:0;
     font-size:2rem;
+    background:darken($color-bg, 7%);
     > a {
       display:block;
-      line-height:$height;
       color:$color-primary;
+      line-height:$height;
       &:hover {
         color:#fff;
         background:$color-primary;
       }
     }
   }
-
   @include e(menu) {
     margin:0;
     padding:0;
   }
-
   @include e(item) {
-    border-bottom:1px solid darken($color-bg, 7%);
     list-style:none;
-    text-align:center;
     font-size:.7rem;
+    text-align:center;
+    border-bottom:1px solid darken($color-bg, 7%);
     > a {
       display:block;
       padding:1rem 0;
@@ -249,6 +224,15 @@ textarea {
       }
     }
   }
+  position:fixed;
+  z-index:8000;
+  top:0;
+  left:0;
+  width:$navigation-width;
+  height:100%;
+  color:#fff;
+  text-align:center;
+  background:darken($color-bg, 5%);
 }
 
 
@@ -262,9 +246,9 @@ textarea {
 //== Footer
 .footer {
   position:fixed;
-  bottom:0;
-  right:0;
   z-index:8000;
+  right:0;
+  bottom:0;
   padding:15px;
 }
 
@@ -272,10 +256,10 @@ textarea {
 //== Copyright
 .copyright {
   margin:0;
-  text-align:center;
   font-size:.7rem;
-  letter-spacing:.05em;
   line-height:1.4;
+  text-align:center;
+  letter-spacing:.05em;
 }
 
 
@@ -288,8 +272,8 @@ textarea {
   @include e(icon) {
     @extend .fa;
     margin-right:.5rem;
-    vertical-align:baseline;
     font-size:2rem;
+    vertical-align:baseline;
   }
 
   @include e(title) {
@@ -317,18 +301,18 @@ textarea {
     position:relative;
     margin:0 1rem;
     padding:1rem;
+    border-radius:3px;
     background:#333842;
     box-shadow:0 2px 4px rgba(0, 0, 0, .2);
-    border-radius:3px;
   }
 
   @include e(avatar) {
-    float:left;
     display:inline-block;
+    float:left;
+    overflow:hidden;
     width:60px;
     height:60px;
     margin-right:1rem;
-    overflow:hidden;
     border-radius:100%;
   }
 
@@ -369,30 +353,108 @@ textarea {
     letter-spacing:.05em;
   }
 
+  @include m(sm) {
+    @include e(link) {
+      display:table;
+      width:100%;
+      padding:1rem;
+      table-layout:fixed;
+    }
+    @include e(avatar, title, meta) {
+      display:table-cell;
+      vertical-align:middle;
+      margin:0;
+    }
+    @include e(avatar) {
+      overflow:hidden;
+      width:30px;
+      height:30px;
+      border-radius:100%;
+      img {
+        max-width:none;
+        width:100%;
+        height:auto;
+        vertical-align:top;
+      }
+    }
+    @include e(title) {
+      width:80%;
+      padding:0 0 0 .5rem;
+    }
+    @include e(meta) {
+      font-size:.8rem;
+      color:#fff;
+      text-align:right;
+    }
+  }
+}
+
+
+//== Trending
+.trendings {
+  margin:1rem -1rem;
+
+  @include e(item) {
+    @include clearfix();
+    display:inline-block;
+    width:50%;
+    margin:1rem 0;
+    vertical-align:top;
+  }
+}
+
+.trending {
+
+  @include e(inner) {
+    position:relative;
+    margin:0 1rem;
+    border-radius:3px;
+    background:#333842;
+    box-shadow:0 2px 4px rgba(0, 0, 0, .2);
+  }
+
+  @include e(title) {
+    margin:0;
+    padding:1rem;
+    color:#fff;
+    font-size:1.6rem;
+    text-align:center;
+    background:darken(#333842, 8%);
+    border-radius:3px 3px 0 0;
+  }
+
+  @include e(list) {
+    margin:0;
+    padding:0;
+    list-style:none;
+    @include e(item) {
+      & + & {
+        border-top:1px solid darken(#333842, 5%);
+      }
+    }
+  }
 }
 
 
 // Loader
 .loader {
-  display:block;
-  margin:0 auto;
-  width:29px;
-  height:29px;
-  position:relative;
-  border:4px solid rgb(0, 0, 0);
-  animation:loader 1.6s infinite ease;
-
   @include e(inner) {
-    vertical-align:top;
     display:inline-block;
     width:100%;
+    vertical-align:top;
     background-color:rgb(0, 0, 0);
     animation:loader-inner 1.6s infinite ease-in;
   }
-
   @include m(hidden) {
     display:none;
   }
+  position:relative;
+  display:block;
+  width:29px;
+  height:29px;
+  margin:0 auto;
+  border:4px solid rgb(0, 0, 0);
+  animation:loader 1.6s infinite ease;
 }
 
 @keyframes loader {
@@ -420,11 +482,11 @@ textarea {
 
 @keyframes loader-inner {
   0% {
-    height:0%;
+    height:0;
   }
 
   25% {
-    height:0%;
+    height:0;
   }
 
   50% {
@@ -436,6 +498,6 @@ textarea {
   }
 
   100% {
-    height:0%;
+    height:0;
   }
 }
