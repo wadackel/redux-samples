@@ -6,6 +6,20 @@ const today = moment();
 
 
 export default class Repository extends Component {
+  static propTypes = {
+    updated_at: PropTypes.string.isRequired,
+    forks_count: PropTypes.number.isRequired,
+    full_name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    html_url: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+    owner: PropTypes.shape({
+      avatar_url: PropTypes.string.isRequired
+    }).isRequired,
+    score: PropTypes.number.isRequired,
+    stargazers_count: PropTypes.number.isRequired
+  };
+
   render() {
     const {
       updated_at,
@@ -14,11 +28,11 @@ export default class Repository extends Component {
       description,
       html_url,
       language,
-      name,
-      owner,
+      owner: {
+        avatar_url
+      },
       score,
-      stargazers_count,
-      watchers_count
+      stargazers_count
     } = this.props;
 
     const updatedLabel = moment(updated_at, "YYYY-MM-DD HH:mm:ss").fromNow();
@@ -26,7 +40,7 @@ export default class Repository extends Component {
     return (
       <div className="repository">
         <div className="repository__inner">
-          <div className="repository__avatar"><img src={owner.avatar_url} /></div>
+          <div className="repository__avatar"><img src={avatar_url} /></div>
           <div className="repository__body">
             <h3 className="repository__title"><a href={html_url} target="_blank">{full_name}</a></h3>
             <p className="repository__description">{description}</p>
@@ -42,20 +56,3 @@ export default class Repository extends Component {
     );
   }
 }
-
-Repository.propTypes = {
-  created_at: PropTypes.string.isRequired,
-  updated_at: PropTypes.string.isRequired,
-  forks_count: PropTypes.number.isRequired,
-  full_name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  html_url: PropTypes.string.isRequired,
-  language: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  owner: PropTypes.shape({
-    avatar_url: PropTypes.string.isRequired,
-    login: PropTypes.string.isRequired
-  }).isRequired,
-  score: PropTypes.number.isRequired,
-  stargazers_count: PropTypes.number.isRequired
-};

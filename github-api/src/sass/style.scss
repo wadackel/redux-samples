@@ -254,7 +254,8 @@ textarea {
       display:block;
       padding:1rem 0;
       color:#fff;
-      &:hover {
+      &:hover,
+      &.active {
         color:#fff;
         background:$color-primary;
       }
