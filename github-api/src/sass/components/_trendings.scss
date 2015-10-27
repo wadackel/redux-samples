@@ -1,0 +1,11 @@
+.trendings {
+  margin:1rem -1rem;
+
+  @include e(item) {
+    @include clearfix();
+    display:inline-block;
+    width:50%;
+    margin:1rem 0;
+    vertical-align:top;
+  }
+}

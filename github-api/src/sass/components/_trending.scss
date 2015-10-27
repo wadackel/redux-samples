@@ -1,0 +1,31 @@
+.trending {
+
+  @include e(inner) {
+    position:relative;
+    margin:0 1rem;
+    border-radius:3px;
+    background:#333842;
+    box-shadow:0 2px 4px rgba(0, 0, 0, .2);
+  }
+
+  @include e(title) {
+    margin:0;
+    padding:1rem;
+    color:#fff;
+    font-size:1.6rem;
+    text-align:center;
+    background:darken(#333842, 8%);
+    border-radius:3px 3px 0 0;
+  }
+
+  @include e(list) {
+    margin:0;
+    padding:0;
+    list-style:none;
+    @include e(item) {
+      & + & {
+        border-top:1px solid darken(#333842, 5%);
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@mixin _btn-theme-factory($color, $background-color) {
+  color:$color;
+  background-color:$background-color;
+  &:hover {
+    color:$color;
+    background-color:darken($background-color, 8%);
+  }
+  &:active {
+    color:$color;
+    background-color:darken($background-color, 12%);
+  }
+}
+
+
+.btn {
+  $height:$control-height;
+
+  display:inline-block;
+  height:$height;
+  padding:6px 12px;
+  cursor:pointer;
+  user-select:none;
+  font-size:1rem;
+  font-weight:normal;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+  text-decoration:none;
+  border:0;
+  transition:all .2s $ease-out-quart;
+  touch-action:manipulation;
+  &:focus {
+    outline:none;
+  }
+
+  @include m(default) {
+    @extend .btn;
+    @include _btn-theme-factory($color-text-primary, darken($color-bg, 5%));
+  }
+
+  @include m(primary) {
+    @extend .btn;
+    @include _btn-theme-factory(#fff, $color-primary);
+  }
+
+  @include m(danger) {
+    // @include _btn-theme-factory(#fff, $color-red);
+  }
+}

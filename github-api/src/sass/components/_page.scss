@@ -1,0 +1,22 @@
+.page {
+  ul {
+    list-style:none;
+    padding-left:0;
+  }
+
+  h3 {
+    margin-top:2rem;
+    margin-bottom:1rem;
+    font-size:1.6rem;
+  }
+
+  @include m(index) {
+    @extend .page;
+    text-align:center;
+  }
+
+  @include m(about) {
+    @extend .page;
+    text-align:center;
+  }
+}

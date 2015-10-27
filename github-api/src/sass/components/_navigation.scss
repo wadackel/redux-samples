@@ -1,0 +1,59 @@
+.navigation {
+  position:fixed;
+  z-index:8000;
+  top:0;
+  left:0;
+  width:$navigation-width;
+  height:100%;
+  color:#fff;
+  text-align:center;
+  background:darken($color-bg, 5%);
+
+  @include e(logo) {
+    $height:$navigation-width;
+    height:$height;
+    margin:0;
+    font-size:2rem;
+    background:darken($color-bg, 7%);
+    > a {
+      display:block;
+      color:$color-primary;
+      line-height:$height;
+      &:hover {
+        color:#fff;
+        background:$color-primary;
+      }
+    }
+  }
+
+  @include e(menu) {
+    margin:0;
+    padding:0;
+  }
+
+  @include e(item) {
+    list-style:none;
+    font-size:.7rem;
+    text-align:center;
+    border-bottom:1px solid darken($color-bg, 7%);
+    > a {
+      display:block;
+      padding:1rem 0;
+      color:#fff;
+      &:hover,
+      &.active {
+        color:#fff;
+        background:$color-primary;
+      }
+      .fa {
+        display:block;
+        margin-bottom:.5rem;
+        font-size:1.5rem;
+      }
+      > span {
+        display:block;
+        letter-spacing:.05em;
+      }
+    }
+  }
+}

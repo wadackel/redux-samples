@@ -1,0 +1,19 @@
+.page-header {
+  position:relative;
+  margin:0 0 2rem 0;
+  text-align:center;
+
+  @include e(icon) {
+    @extend .fa;
+    margin-right:.5rem;
+    font-size:2rem;
+    vertical-align:baseline;
+  }
+
+  @include e(title) {
+    display:inline-block;
+    margin:0;
+    font-size:2rem;
+    letter-spacing:.05em;
+  }
+}
