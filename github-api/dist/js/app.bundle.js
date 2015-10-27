@@ -26003,10 +26003,32 @@
 	    value: function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        null,
+	        { className: "page--index" },
 	        _react2["default"].createElement(_PageHeader2["default"], {
 	          icon: "dashboard",
-	          title: "HOME" })
+	          title: "HOME" }),
+	        _react2["default"].createElement(
+	          "p",
+	          null,
+	          "This web site is a sample application that uses ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/rackt/redux" },
+	            "redux"
+	          ),
+	          " and ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/rackt/redux-router" },
+	            "redux-router"
+	          ),
+	          "."
+	        ),
+	        _react2["default"].createElement(
+	          "p",
+	          null,
+	          "You can see the search and programing language trend of the repository."
+	        )
 	      );
 	    }
 	  }]);
@@ -26122,10 +26144,69 @@
 	    value: function render() {
 	      return _react2["default"].createElement(
 	        "div",
-	        null,
+	        { className: "page--about" },
 	        _react2["default"].createElement(_PageHeader2["default"], {
 	          icon: "question",
-	          title: "ABOUT" })
+	          title: "ABOUT" }),
+	        _react2["default"].createElement(
+	          "p",
+	          null,
+	          "Github : ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/tsuyoshiwada/" },
+	            "tsuyoshiwada"
+	          ),
+	          _react2["default"].createElement("br", null),
+	          "Twitter : ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://twitter.com/vandalTsuyoshi" },
+	            "vandalTsuyoshi"
+	          ),
+	          _react2["default"].createElement("br", null),
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/tsuyoshiwada/redux-samples/tree/gh-pages/github-api" },
+	            "Source on Github"
+	          )
+	        ),
+	        _react2["default"].createElement(
+	          "h3",
+	          null,
+	          "Main Libraries"
+	        ),
+	        _react2["default"].createElement(
+	          "ul",
+	          null,
+	          _react2["default"].createElement(
+	            "li",
+	            null,
+	            _react2["default"].createElement(
+	              "a",
+	              { href: "https://github.com/facebook/react" },
+	              "react"
+	            )
+	          ),
+	          _react2["default"].createElement(
+	            "li",
+	            null,
+	            _react2["default"].createElement(
+	              "a",
+	              { href: "https://github.com/rackt/redux" },
+	              "redux"
+	            )
+	          ),
+	          _react2["default"].createElement(
+	            "li",
+	            null,
+	            _react2["default"].createElement(
+	              "a",
+	              { href: "https://github.com/rackt/redux-router" },
+	              "redux-router"
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);

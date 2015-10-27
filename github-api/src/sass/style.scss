@@ -83,17 +83,7 @@ textarea {
 
 .btn {
   $height:$control-height;
-  @include m(default) {
-    @extend .btn;
-    @include _btn-theme-factory($color-text-primary, darken($color-bg, 5%));
-  }
-  @include m(primary) {
-    @extend .btn;
-    @include _btn-theme-factory(#fff, $color-primary);
-  }
-  @include m(danger) {
-    // @include _btn-theme-factory(#fff, $color-red);
-  }
+
   display:inline-block;
   height:$height;
   padding:6px 12px;
@@ -107,10 +97,23 @@ textarea {
   text-decoration:none;
   border:0;
   transition:all .2s $ease-out-quart;
-
   touch-action:manipulation;
   &:focus {
     outline:none;
+  }
+
+  @include m(default) {
+    @extend .btn;
+    @include _btn-theme-factory($color-text-primary, darken($color-bg, 5%));
+  }
+
+  @include m(primary) {
+    @extend .btn;
+    @include _btn-theme-factory(#fff, $color-primary);
+  }
+
+  @include m(danger) {
+    // @include _btn-theme-factory(#fff, $color-red);
   }
 }
 
@@ -122,11 +125,19 @@ textarea {
   $font-size:16px;
   $border-width:1px;
   $border-color:$color-text-primary;
+
+  display:table;
+  box-sizing:border-box;
+  width:100%;
+  border-collapse:separate;
+  font-size:$font-size;
+
   @include m(search) {
     max-width:600px;
     margin-right:auto;
     margin-left:auto;
   }
+
   @include e(control) {
     display:table-cell;
     float:left;
@@ -146,6 +157,7 @@ textarea {
       border-width:$border-width $border-width $border-width 0;
     }
   }
+
   @include e(addon, btn) {
     display:table-cell;
     box-sizing:border-box;
@@ -160,6 +172,7 @@ textarea {
     border-style:solid;
     border-color:$border-color;
   }
+
   @include e(btn) {
     @include m(search) {
       width:70px;
@@ -170,16 +183,46 @@ textarea {
     padding:0;
     border:0;
   }
-  display:table;
-  box-sizing:border-box;
-  width:100%;
-  border-collapse:separate;
-  font-size:$font-size;
+}
+
+
+//== Page
+.page {
+  ul {
+    list-style:none;
+    padding-left:0;
+  }
+
+  h3 {
+    margin-top:2rem;
+    margin-bottom:1rem;
+    font-size:1.6rem;
+  }
+
+  @include m(index) {
+    @extend .page;
+    text-align:center;
+  }
+
+  @include m(about) {
+    @extend .page;
+    text-align:center;
+  }
 }
 
 
 //== Navigation
 .navigation {
+  position:fixed;
+  z-index:8000;
+  top:0;
+  left:0;
+  width:$navigation-width;
+  height:100%;
+  color:#fff;
+  text-align:center;
+  background:darken($color-bg, 5%);
+
   @include e(logo) {
     $height:$navigation-width;
     height:$height;
@@ -196,10 +239,12 @@ textarea {
       }
     }
   }
+
   @include e(menu) {
     margin:0;
     padding:0;
   }
+
   @include e(item) {
     list-style:none;
     font-size:.7rem;
@@ -224,15 +269,6 @@ textarea {
       }
     }
   }
-  position:fixed;
-  z-index:8000;
-  top:0;
-  left:0;
-  width:$navigation-width;
-  height:100%;
-  color:#fff;
-  text-align:center;
-  background:darken($color-bg, 5%);
 }
 
 
