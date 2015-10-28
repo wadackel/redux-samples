@@ -1,106 +1,50 @@
-// import fetch from "isomorphic-fetch"
-// import {
-//   FETCH_USER,
-//   RECEIVE_USER,
-//   INVALIDATE_USER,
-//   FETCH_STARRED,
-//   RECEIVE_STARRED,
-//   INVALIDATE_STARRED
-// } from "../constants/ActionTypes"
-//
-//
-// const API_ENDPOINT = "https://api.github.com";
-//
-// function checkStatus(res) {
-//   if( res.status >= 200 && res.status < 300 ){
-//     return res;
-//   }else{
-//     let error = new Error(res.statusText);
-//     error.response = res;
-//     throw error;
-//   }
-// }
-//
-// function parseJSON(res) {
-//   return res.json();
-// }
-//
-//
-// export function requestUser(userName) {
-//   return {
-//     type: FETCH_USER,
-//     userName
-//   }
-// }
-//
-//
-// export function receiveUser(user) {
-//   return {
-//     type: RECEIVE_USER,
-//     user
-//   }
-// }
-//
-//
-// export function invalidateUser(err) {
-//   return {
-//     type: INVALIDATE_USER,
-//     err
-//   }
-// }
-//
-//
-// export function fetchUser(userName) {
-//   return (dispatch) => {
-//     dispatch(requestUser(userName));
-//     return fetch(`${API_ENDPOINT}/users/${userName}`)
-//       .then(checkStatus)
-//       .then(parseJSON)
-//       .then((json) => {
-//         dispatch(receiveUser(json));
-//       })
-//       .catch((err) => {
-//         dispatch(invalidateUser(err));
-//       });
-//   };
-// }
-//
-//
-// export function requestStarred(userName) {
-//   return {
-//     type: FETCH_STARRED,
-//     userName
-//   };
-// }
-//
-//
-// export function receiveStarred(starred) {
-//   return {
-//     type: RECEIVE_STARRED,
-//     starred
-//   };
-// }
-//
-//
-// export function invalidateStarred(err) {
-//   return {
-//     type: INVALIDATE_STARRED,
-//     err
-//   };
-// }
-//
-//
-// export function fetchStarred(userName) {
-//   return (dispatch) => {
-//     dispatch(requestStarred(userName));
-//     return fetch(`${API_ENDPOINT}/users/${userName}/starred`)
-//       .then(checkStatus)
-//       .then(parseJSON)
-//       .then((json) => {
-//         dispatch(receiveStarred(json));
-//       })
-//       .catch((err) => {
-//         dispatch(invalidateStarred(err));
-//       });
-//   };
-// }
+import moment from "moment"
+import fetch from "isomorphic-fetch"
+import {checkStatus, parseJSON} from "../utils/fetch-utils"
+import * as actionTypes from "../constants/ActionTypes"
+import * as constants from "../constants/Github"
+
+
+// Search
+export function requestSearch(keyword) {
+  return {
+    type: actionTypes.FETCH_SEARCH,
+    keyword
+  };
+}
+
+export function receiveSearch(repositories, pagination) {
+  return {
+    type: actionTypes.RECEIVE_SEARCH,
+    repositories,
+    pagination
+  };
+}
+
+export function invalidateSearch(err) {
+  return {
+    type: actionTypes.INVALIDATE_SEARCH,
+    err
+  };
+}
+
+export function fetchSearch(keyword, nextPage) {
+  return (dispatch) => {
+    dispatch(requestSearch(keyword));
+    return fetch(`${constants.API_ENDPOINT}/search/repositories?q=${keyword}&sort=stars&order=desc&page=${nextPage}&per_page=${constants.PER_PAGE}`)
+      .then(checkStatus)
+      .then(parseJSON)
+      .then((json) => {
+        dispatch(receiveSearch(
+          json.items,
+          {
+            total: json.total_count,
+            current: parseInt(nextPage, 10)
+          }
+        ));
+      })
+      .catch((err) => {
+        dispatch(invalidateSearch(err));
+      });
+  };
+}

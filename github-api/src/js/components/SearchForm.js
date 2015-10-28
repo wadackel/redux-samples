@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from "react"
 
 export default class SearchForm extends Component {
   static propTypes = {
+    defaultValue: PropTypes.string,
     onSubmitKeyword: PropTypes.func.isRequired
   };
 
@@ -11,7 +12,7 @@ export default class SearchForm extends Component {
       <div className="search-form">
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="input-group input-group--search">
-              <input type="text" ref="keyword" className="input-group__control" placeholder="Keyword" />
+              <input type="text" ref="keyword" className="input-group__control" placeholder="Keyword" defaultValue={this.props.defaultValue} />
               <div className="input-group__btn input-group__btn--search">
                 <button className="btn--primary"><i className="fa fa-search"></i></button>
               </div>

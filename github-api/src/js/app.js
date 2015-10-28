@@ -18,7 +18,12 @@ ReactDOM.render(
     <ReduxRouter>
       <Route path="/" component={App}>
         <Route path="about" component={About} />
-        <Route path="search" component={Search} />
+        <Route path="search">
+          <Route path=":page" component={Search}>
+            <Route path=":keyword" component={Search} />
+          </Route>
+          <IndexRoute component={Search} />
+        </Route>
         <Route path="trending" component={Trending} />
         <IndexRoute component={Index} />
       </Route>

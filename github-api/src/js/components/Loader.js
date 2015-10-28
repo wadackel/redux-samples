@@ -12,7 +12,6 @@ export default class Loader extends Component {
   };
 
   render() {
-    console.log(this.props);
     const classes = classNames({
       "loader": true,
       "loader--hidden": this.props.hidden

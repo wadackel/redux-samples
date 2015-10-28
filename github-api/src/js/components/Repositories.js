@@ -4,16 +4,17 @@ import Loader from "./Loader"
 
 
 export default class Repositories extends Component {
+  static propTypes = {
+    repositories: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired
+  };
+
   render() {
     return (
       <div className="repositories">
         {this.props.repositories.map((repository, i) => <Repository key={i} {...repository} />)}
-        <Loader hidden={false} />
+        <Loader hidden={!this.props.isFetching} />
       </div>
     );
   }
 }
-
-Repositories.propTypes = {
-  repositories: PropTypes.array.isRequired
-};

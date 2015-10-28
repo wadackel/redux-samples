@@ -12,7 +12,7 @@ export default class Repository extends Component {
     full_name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     html_url: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
+    language: PropTypes.string,
     owner: PropTypes.shape({
       avatar_url: PropTypes.string.isRequired
     }).isRequired,
