@@ -4,8 +4,8 @@ import {parseTime} from "../utils/dates"
 
 const initialState = parseTime(new Date());
 
-export default function clock(state=initialState, action) {
-  switch( action.type ){
+export default function clock(state = initialState, action) {
+  switch ( action.type ) {
     case SYNC_DATE:
       const {hour, minutes, seconds} = action;
       return Object.assign({}, state, {
