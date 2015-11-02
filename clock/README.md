@@ -1,6 +1,9 @@
 react-redux
 ===========
 
+![Screenshot](./screenshot.png)
+[http://tsuyoshiwada.github.io/redux-samples/clock/dist/](http://tsuyoshiwada.github.io/redux-samples/clock/dist/)
+
 `Redux`を使って、定期的なアクションの実行を行うサンプルです。
 
 このディレクトリへ移動して、必要なライブラリをインストールします。
