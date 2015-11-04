@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:400);
+@import "normalize";
+
+// Element
+@mixin e($names...) {
+  @each $name in $names {
+    &__#{$name} {
+      @content;
+    }
+  }
+}
+
+// Modifier
+@mixin m($names...) {
+  @each $name in $names {
+    &--#{$name} {
+      @content;
+    }
+  }
+}
