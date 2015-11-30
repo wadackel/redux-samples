@@ -2,15 +2,36 @@
   "name": "twitter-streaming",
   "version": "0.0.0",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "npm run server & npm run watch",
+    "server": "npm run server:express & npm run server:bs",
+    "server:bs": "browser-sync start --proxy 'localhost:4000' --files '*.html, *.css, *.js' --no-notify --reload-delay 500",
+    "server:express": "nodemon server.js",
+    "watch": "npm run watch:js & npm run watch:sass",
+    "watch:js": "watchify src/js/app.js -o public/js/app.bundle.js -t [ babelify ] -v -d",
+    "watch:sass": "node-sass --output-style expanded -r src/sass -o public/css -w",
+    "build": "npm run build:sass & npm run build:js && npm run uglify",
+    "build:js": "NODE_ENV=production browserify src/js/app.js -o public/js/app.bundle.js -t [ babelify ]",
+    "build:sass": "node-sass --output-style compressed -r src/sass -o public/css",
+    "uglify": "uglifyjs public/js/app.bundle.js -o public/js/app.bundle.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
-    "ejs": "~2.3.3",
+    "dotenv": "^1.2.0",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "node-sass": "^3.4.2",
+    "node-tweet-stream": "^1.8.3",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.6.1"
   }
 }

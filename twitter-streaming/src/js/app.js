@@ -1,1 +1,5 @@
-console.log(`TwitterStreaming!!`);
+const socket = window.socket;
+
+socket.on("tweet", (tweet) => {
+  console.log(tweet);
+});
