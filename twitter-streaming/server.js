@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", function(req, res){
-  res.sendfile("index.html");
+  res.sendFile("/index.html");
 });
 
 
@@ -33,6 +33,7 @@ app.get("/", function(req, res){
 io.on("connection", function(socket){
   // Twitter
   t.on("tweet", function(tweet) {
+    console.log("emit `tweet`", tweet);
     io.emit("tweet", tweet);
   });
 
@@ -40,6 +41,8 @@ io.on("connection", function(socket){
     console.log("Error!!");
   });
 
+  t.track("node.js");
+  t.track("atom");
   t.track("atomeditor");
   t.track("sublimetext");
   t.track("vim");
